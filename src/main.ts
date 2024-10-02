@@ -1,22 +1,41 @@
 const canvas = document.getElementById("canvas") as HTMLCanvasElement;
 const ctx = canvas.getContext("2d") as CanvasRenderingContext2D;
 
-///// checkbox management /////
+///// main loop /////
 
+let time = new Date();
+setInterval(() => {
+	time = new Date();
+	redraw();
+}, 1000);
+
+///// checkboxes /////
+
+const binBox = document.getElementById("bin") as HTMLInputElement;
 const octBox = document.getElementById("oct") as HTMLInputElement;
 const decBox = document.getElementById("dec") as HTMLInputElement;
 const hexBox = document.getElementById("hex") as HTMLInputElement;
 const blBox = document.getElementById("backlight") as HTMLInputElement;
 
+let showBin = 1;
 let showOct = 1;
 let showDec = 1;
 let showHex = 1;
 let black = "#383E42";
 
+const setShowBin = () => (showBin = binBox.checked ? 1 : 0);
 const setShowOct = () => (showOct = octBox.checked ? 1 : 0);
 const setShowDec = () => (showDec = decBox.checked ? 1 : 0);
 const setShowHex = () => (showHex = hexBox.checked ? 1 : 0);
 const setBlack = () => (black = blBox.checked ? "#383E42" : "#282828");
+
+///// event handling
+
+binBox.addEventListener("click", () => {
+	setShowBin();
+	redraw();
+});
+setShowBin();
 
 octBox.addEventListener("click", () => {
 	setShowOct();
@@ -41,14 +60,6 @@ blBox.addEventListener("click", () => {
 	redraw();
 });
 setBlack();
-
-///// event handling /////
-
-let time = new Date();
-setInterval(() => {
-	time = new Date();
-	redraw();
-}, 1000);
 
 window.addEventListener("resize", redraw);
 redraw();
@@ -97,7 +108,7 @@ function toBits(value: number): number[] {
 }
 
 function drawDot(x: number, y: number, on: number) {
-	ctx.fillStyle = on > 0 ? "#ebdbb2" : black;
+	ctx.fillStyle = showBin && on > 0 ? "#ebdbb2" : black;
 	ctx.fillRect(x, y, 1, 1);
 }
 
