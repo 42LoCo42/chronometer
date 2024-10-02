@@ -1,0 +1,12 @@
+x-togglebox {
+	position: absolute;
+	top: 50px;
+	left: 50px;
+	z-index: 10;
+	background-color: white;
+	opacity: 0.1;
+}
+
+x-togglebox:hover {
+	opacity: 1;
+}
