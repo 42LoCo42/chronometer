@@ -1,3 +1,4 @@
 *.js
 *.tsbuildinfo
 /.direnv
+/result
