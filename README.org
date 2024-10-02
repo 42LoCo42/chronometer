@@ -3,4 +3,4 @@ The most useful timepiece you've ever seen!
 
 https://chronometer.eleonora.gay/
 
-[[file:screenshot.png]]
+[[file:screenshot2.png]]
