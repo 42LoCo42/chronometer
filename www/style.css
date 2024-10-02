@@ -3,7 +3,7 @@ x-togglebox {
 	top: 50px;
 	left: 50px;
 	z-index: 10;
-	background-color: white;
+	color: #ebdbb2 !important;
 	opacity: 0.1;
 }
 
