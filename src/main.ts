@@ -63,6 +63,13 @@ function redraw() {
 	ctx.fillStyle = "#282828";
 	ctx.fillRect(0, 0, canvas.width, canvas.height);
 
+	ctx.fillStyle = "#ebdbb2";
+	ctx.font = `${Math.trunc(canvas.width / 30)}px sans-serif`;
+
+	const title = "✨ ⏰ The Chronometer of Endless Whimsy! ⏰ ✨";
+	const metrics = ctx.measureText(title);
+	ctx.fillText(title, (canvas.width - metrics.width) / 2, canvas.height * 0.1);
+
 	// base size
 	const bw = 49;
 	const bh = 13;

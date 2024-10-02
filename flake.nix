@@ -23,7 +23,6 @@
         devShells.default = pkgs.mkShell {
           inputsFrom = [ packages.default ];
           packages = with pkgs; [
-            nodePackages.typescript-language-server
             python3 # http.server
           ];
         };
