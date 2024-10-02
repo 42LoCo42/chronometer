@@ -140,20 +140,20 @@ function drawEight(x: number, oct: string, dec: string, hex: string) {
 	// |     |
 	//  --D--
 
-	//               x       y       w       h
-	const segments: [number, number, number, number][] = [
-		[x + 1, 1, 4, 1], // A
-		[x + 5, 2, 1, 4], // B
-		[x + 5, 7, 1, 4], // C
-		[x + 1, 11, 4, 1], // D
-		[x + 0, 7, 1, 4], // E
-		[x + 0, 2, 1, 4], // F
-		[x + 1, 6, 4, 1], // G
+	// prettier-ignore
+	//               x       y       vertical
+	const segments: [number, number, boolean][] = [
+		[x + 1,  1, false], // A
+		[x + 5,  2, true ], // B
+		[x + 5,  7, true ], // C
+		[x + 1, 11, false], // D
+		[x + 0,  7, true ], // E
+		[x + 0,  2, true ], // F
+		[x + 1,  6, false], // G
 	];
 
 	const font: { [id: string]: number[] } = {
 		//  A  B  C  D  E  F  G
-		_: [0, 0, 0, 0, 0, 0, 0],
 		0: [1, 1, 1, 1, 1, 1, 0],
 		1: [0, 1, 1, 0, 0, 0, 0],
 		2: [1, 1, 0, 1, 1, 0, 1],
@@ -194,6 +194,26 @@ function drawEight(x: number, oct: string, dec: string, hex: string) {
 			((hexDigit[x] * showHex) << (1 * 2));
 
 		ctx.fillStyle = colors[colorID];
-		ctx.fillRect(...segments[x]);
+
+		const segment = segments[x];
+		ctx.beginPath();
+		ctx.moveTo(segment[0], segment[1]);
+
+		const offsets = [
+			[+4.0, +0.0],
+			[+4.5, +0.5],
+			[+4.0, +1.0],
+			[+0.0, +1.0],
+			[-0.5, +0.5],
+		];
+
+		for (let offset of offsets) {
+			if (segment[2]) offset.reverse();
+			const [x, y] = offset;
+			ctx.lineTo(segment[0] + x, segment[1] + y);
+		}
+
+		ctx.closePath();
+		ctx.fill();
 	}
 }
