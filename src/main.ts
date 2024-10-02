@@ -124,11 +124,11 @@ function drawEightsPair(x: number, value: number, twoDots: boolean) {
 	if (twoDots) {
 		drawDot(x + 9.5, 8.5, bits[0]);
 		drawDot(x + 2.5, 8.5, bits[1]);
-		drawDot(x - 2, 8, bits[2]);
+		drawDot(x - 2, 8.5, bits[2]);
 
 		drawDot(x + 9.5, 3.5, bits[3]);
 		drawDot(x + 2.5, 3.5, bits[4]);
-		drawDot(x - 2, 4, bits[5]);
+		drawDot(x - 2, 3.5, bits[5]);
 	} else {
 		drawDot(x + 9.5, 8.5, bits[0]);
 		drawDot(x + 2.5, 8.5, bits[1]);
